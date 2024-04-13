@@ -1,0 +1,227 @@
+
+****************.XML*******************
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/name"
+            android:hint="Enter your name: "
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Your Gender: "
+            android:textSize="30dp"
+            />
+
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male"
+                android:id="@+id/male"
+                />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female"
+                android:id="@+id/female"
+                />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Other"
+                android:id="@+id/other"
+                />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Your Hobbies: "
+            android:textSize="30dp"
+            />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cycling"
+            android:textSize="20dp"
+            android:id="@+id/c1"
+            />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cooking"
+            android:textSize="20dp"
+            android:id="@+id/c2"
+            />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reading"
+            android:textSize="20dp"
+            android:id="@+id/c3"
+            />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gaming"
+            android:textSize="20dp"
+            android:id="@+id/c4" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:textSize="20dp"
+            android:id="@+id/submit" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tname"
+            android:textSize="25dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tgender"
+            android:textSize="25dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/thobbies"
+            android:textSize="25dp"
+            />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:id="@+id/imgbtn"
+            android:src="@drawable/baseline_arrow_back_24"
+            />
+        <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:id="@+id/tgbtn"
+            />
+
+    </LinearLayout>
+
+</ScrollView>
+
+****************.KT*******************
+
+package com.example.p8_views
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.RadioButton
+import android.widget.TextView
+import android.widget.Toast
+import android.widget.ToggleButton
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val name = findViewById<EditText>(R.id.name)
+        val male = findViewById<RadioButton>(R.id.male)
+        val female = findViewById<RadioButton>(R.id.female)
+        val others = findViewById<RadioButton>(R.id.other)
+        val h1 = findViewById<CheckBox>(R.id.c1)
+        val h2 = findViewById<CheckBox>(R.id.c2)
+        val h3 = findViewById<CheckBox>(R.id.c3)
+        val h4 = findViewById<CheckBox>(R.id.c4)
+        val submit = findViewById<Button>(R.id.submit)
+
+        val tname = findViewById<TextView>(R.id.tname)
+        val tgender = findViewById<TextView>(R.id.tgender)
+        val thobbies = findViewById<TextView>(R.id.thobbies)
+
+        val imgbtn = findViewById<ImageButton>(R.id.imgbtn)
+        val tgbtn = findViewById<ToggleButton>(R.id.tgbtn)
+        var s= ""
+
+
+        submit.setOnClickListener {
+            tname.text = name.text
+            if(male.isChecked){
+                tgender.text = male.text
+            }else if (female.isChecked){
+                tgender.text = female.text
+            }else{
+                tgender.text = others.text
+            }
+
+
+            if(h1.isChecked){
+                s = s+ ", " + h1.text as String
+            }
+            if(h2.isChecked){
+                s = s+ ", " + h2.text as String
+            }
+            if(h3.isChecked){
+                s = s+ ", " + h3.text as String
+            }
+            if(h4.isChecked){
+                s = s+ ", " + h4.text as String
+            }
+            thobbies.text = s
+
+        }
+
+        imgbtn.setOnClickListener {
+            name.setText("")
+
+            male.isChecked=false
+            female.isChecked=false
+            others.isChecked=false
+
+            h1.isChecked=false
+            h2.isChecked=false
+            h3.isChecked=false
+            h4.isChecked=false
+
+            tname.setText("")
+            tgender.setText("")
+            thobbies.setText("")
+            s=""
+
+        }
+
+        tgbtn.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked){
+                Toast.makeText(this, "Toggle Button is ON", Toast.LENGTH_LONG).show()
+            }else{
+            Toast.makeText(this, "Toggle Button is OFF", Toast.LENGTH_LONG).show()
+        }
+        }
+
+
+    }
+}

@@ -1,0 +1,152 @@
+**********************.XML*************************
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    tools:ignore="NamespaceTypo">
+
+        <EditText
+            android:id="@+id/num1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Enter a Number"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="30dp"/>
+
+
+        <EditText
+            android:id="@+id/num2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/num1"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="30dp"
+            android:hint="Enter a Number" />
+
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADD"
+            android:layout_marginTop="200dp"
+            android:layout_marginLeft="20dp"
+            android:layout_alignParentRight="false"/>
+
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SUB"
+            android:layout_marginTop="200dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/btn1"/>
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MUL"
+            android:layout_marginTop="200dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/btn2"/>
+
+        <Button
+            android:id="@+id/btn4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/btn3"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="200dp"
+            android:text="DIV" />
+
+        <TextView
+            android:id="@+id/result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Result : "
+            android:layout_marginTop="300dp"
+            android:layout_marginLeft="170dp"
+            android:textSize="20dp"
+            />
+</RelativeLayout>
+
+******************.KT*************************
+package com.example.prac7_239665
+
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_main)
+        add()
+        sub()
+        mul()
+        div()
+
+    }
+        fun add(){
+
+            val num1=findViewById<EditText>(R.id.num1)
+            val num2=findViewById<EditText>(R.id.num2)
+            val btn1=findViewById<Button>(R.id.btn1)
+            val result=findViewById<TextView>(R.id.result)
+
+            btn1.setOnClickListener{
+                val num1=num1.text.toString().toInt()
+                val num2=num2.text.toString().toInt()
+                val sum=num1+num2
+                result.text=sum.toString()
+            }
+        }
+        fun sub(){
+            val num1=findViewById<EditText>(R.id.num1)
+            val num2=findViewById<EditText>(R.id.num2)
+            val btn2=findViewById<Button>(R.id.btn2)
+            val result=findViewById<TextView>(R.id.result)
+
+            btn2.setOnClickListener{
+                val num1=num1.text.toString().toInt()
+                val num2=num2.text.toString().toInt()
+                val sub=num1-num2
+                result.text=sub.toString()
+            }
+        }
+        fun mul(){
+            val num1=findViewById<EditText>(R.id.num1)
+            val num2=findViewById<EditText>(R.id.num2)
+            val btn3=findViewById<Button>(R.id.btn3)
+            val result=findViewById<TextView>(R.id.result)
+
+            btn3.setOnClickListener{
+                val num1=num1.text.toString().toInt()
+                val num2=num2.text.toString().toInt()
+                val mul=num1*num2
+                result.text=mul.toString()
+            }
+        }
+        fun div(){
+            val num1=findViewById<EditText>(R.id.num1)
+            val num2=findViewById<EditText>(R.id.num2)
+            val btn4=findViewById<Button>(R.id.btn4)
+            val result=findViewById<TextView>(R.id.result)
+
+            btn4.setOnClickListener {
+                val num1 = num1.text.toString().toInt()
+                val num2 = num2.text.toString().toInt()
+                val div = num1 / num2
+                result.text = div.toString()
+            }
+    }
+}
